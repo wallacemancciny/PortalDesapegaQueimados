@@ -9,36 +9,36 @@ if(empty($_SESSION['cLogin'])) {
 ?>
 
 <div class="container">
-	<h1>Meus Anúncios</h1>
+  <h1>Meus Anúncios</h1>
 
-	<a href="add-anuncio.php" class="btn btn-primary">Adicionar Anúncios</a>
-	<hr>
-	<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Foto</th>
-      <th scope="col">Título</th>
-      <th scope="col">Valor</th>
-      <th scope="col">Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-    <?php
-    require 'classes/anuncios.class.php';
-    $a = new Anuncios();
-    $anuncios = $a->getMeusAnuncios();
+  <a href="add-anuncio.php" class="btn btn-primary">Adicionar Anúncios</a>
+  <hr>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Foto</th>
+        <th>Título</th>
+        <th>Valor</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+      <?php
+      require 'classes/anuncios.class.php';
+      $a = new Anuncios();
+      $anuncios = $a->getMeusAnuncios();
 
-    foreach ($anuncios as $anuncio) {
-    	?>
-    	<td><img src="assets/images/anuncios/<?php echo $anuncio['url']; ?>" border="0" /></td>
-    	<td><?php echo $anuncio['titulo']; ?></td>
-    	<td><?php echo number_format($anuncio['valor'], 2); ?></td>
-    	<td></td>
-    	<?php
-    }
-    ?>
-    </tr>
+      foreach ($anuncios as $anuncio):
+        ?>
+        <tr>
+          <td><img src="assets/images/anuncios/<?php echo $anuncio['url']; ?>" border="0" /></td>
+          <td><?php echo $anuncio['titulo']; ?></td>
+          <td><?php echo number_format($anuncio['valor'], 2); ?></td>
+          <td>...</td>
+        </tr>
+        <?php
+      endforeach;
+      ?>
+    
   </tbody>
 </table>
 </div>
